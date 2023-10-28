@@ -1,0 +1,38 @@
+﻿@model X.PagedList.IPagedList<Forum.Models.Topic>
+@using X.PagedList.Mvc.Core
+
+<h2 class="text-center">Темы</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Заголовок</th>
+            <th>Дата создания</th>
+            <th>Пользователь</th>
+            <th>Количество ответов</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="clickable-row" onclick="window.location.href='@Url.Action("Details", "Topics", new { id = item.Id })';">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Answers.Count)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
