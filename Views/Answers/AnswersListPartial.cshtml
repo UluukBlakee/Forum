@@ -1,0 +1,19 @@
+﻿@model List<Answer>
+
+@foreach (var item in Model)
+{
+    <div class="card d-flex mt-4 mx-5">
+        <div class="card-header d-flex align-items-center bg-dark text-white">
+            <img src="@item.User.Avatar" alt="Avatar" class="rounded-circle border border-2" style="width: 50px; height: 50px;">
+            <h6 class="ms-2 mb-0 fw-bold"><a class="text-white" asp-action="Details" asp-controller="Users" asp-route-id="@item.User.Id">@item.User.UserName</a></h6>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                @item.Text
+            </p>
+        </div>
+        <div class="ms-auto">
+            <p class="mb-0 text-muted pe-3">@item.DepartureDate</p>
+        </div>
+    </div>
+}
