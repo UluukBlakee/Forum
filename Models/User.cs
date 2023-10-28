@@ -6,5 +6,7 @@ namespace Forum.Models
     public class User : IdentityUser<int>
     {
         public string? Avatar { get; set; }
+        [JsonIgnore]
+        public List<Answer>? Answers { get; set; }
     }
 }
